@@ -126,11 +126,27 @@ Hendluje slanje requestova iz Angulara. Import: import { HttpClient } from "@ang
 Assests ----------------
 Slike i slicno ide u assets folder, koji se mora definisati u angular.json (root of project)
 
+ROUTES -----------------
+hendluje rutiranje izmedju komponenata u applikaciji. Svaka komponenta moze imati rutu.
+rute linkujem pomocu:
+  <a routerLink="['/products']">Products List</a>
 
+kada se ruter aktivira, u konfiguraciji koju komponentu treba prikazati za koji path
 
+* Potrebno je dodati RouterModule.forRoot([]) u app.module.ts import deo da bi rutiranje radilo
+* potrebno dodati <router-outlet></router-outlet> u html root komponente
 
+primer routing configa:
+ [
+   {path: 'products', component: ProductListComponent},
+   {path: 'products/:id', component: ProductDetailComponent},
+   {path: 'welcome', component: welcomeComponent},
+   {path: '', redirectTo: 'welcome', pathMatch: 'full'},
+   {path: '**', component: PageNotFoundComponent}
+ ]
 
-
+ Komponente se prikazuju tamo gde je specificiran router-outlet, te ga je pozeljno staviti u neki container (div)
+ 
 
 
 
