@@ -1,0 +1,158 @@
+CLI--------------------------
+ng g c [name] - g znaci "generate" , c znaci "component"
+npm install [package name] - install package, tipa bootstrap, zatim u styles.css dodati na pocetak fajla "@import "~bootstrap/dist/css/bootstrap.min.css";"
+
+BINDING ---------------------
+{{property name}} - read only data - one way
+property binding - primer: <img [src]='product.imageUrl'>
+[(ngModel)] = 'property name' - Two way binding
+
+PIPES ----------------------
+ | - transformise data , moze da se chainuje sa " property | pipeFunc | pipeFunc2"
+
+		- CUSTOM PIPE-------
+			Example:
+
+			import { Pipe, PipeTransform } from "@angular/core";
+
+			@Pipe({
+				name: 'convertToSpaces',
+			})
+			export class ConvertToSpacesPipe implements PipeTransform {
+
+				transform(value: string, character: string): string {
+					return value.replace(character, ' ');
+				}
+			}
+
+LIFECYCLE ------------------
+OnInit - inicijalizuje komponente, nabavlja data
+OnChanges - radi akciju nakon promene input propertija
+OnDestroy - ciscenje pre unistenja komponente
+
+svi lyfecycle hookovi su interfejs, te komponenta mora da ga implementira
+
+INTERFEJSI -----------------
+Isto kao klasa, samo sto umesto class ide interface , dalje se sve definisu polja kao u klasi
+
+
+FILTERI -------------------
+ za filtriranje podataka bez gubitka org podataka
+ Angular docs kaze da se filteri ne prave kao pipe vec da se logika za filtriranje stavlja u komponentu
+
+ get and set funckije se koriste jer se automatski zovu na svaku promenu
+	_listFilter: string;
+    get listFilter(): string {
+        return this._listFilter;
+    }
+
+    set listFilter(value: string) {
+        this._listFilter = value;
+        this.filteredProducts = this.listFilter ? this.performFilter(this.listFilter) : this.products;
+    }
+
+	// metoda koja radi filtriranje
+	performFilter(filterBy: string): IProduct[] {
+        filterBy = filterBy.toLocaleLowerCase();
+        return this.products.filter((product: IProduct) =>
+            product.productName.toLocaleLowerCase().indexOf(filterBy) !== -1);
+    }
+
+	// da filtered producti budu popunjeni na pocetku
+	constructor() {
+        this.filteredProducts = this.products;
+        this.listFilter = 'cart';
+    }
+
+	u template treba promeniti da radi forEach na osnovu filteredProducts-a
+
+KOMPONENTE ----------------
+Nested komponente - komuniciraju sa drugim komponentama putem:
+  @Input anotacije kad primaju podatke
+  @Output anotacije kad salju podatke, tako sto dizu eventove
+
+  @Input - u komponenti se stavi @Input() ispred filda koji primamo, zatim se tamo odakle se komponenta zove (html), stavi:
+    <component-name [ime_filda_u_komponenti]='field_koji_saljemo'></component-name>
+
+  @Output - u komponenti koja salje podatke se stavi @Output() ali tip mora biti event
+    primer:
+      @Output() notify: EventEmitter<string> = new EventEmitter<string>();
+
+    zatim se u nekoj metodi (delete/edit/sta god) emituje event sa podacima
+    primer:
+      onClick() {
+        this.notify.emit('clicked!');
+      }
+
+    zatim u html komponente koja treba da primi event stavimo ime eventa sa metodom koja ce se zvati kad se event desi
+    primer:
+      (notify)='onNotify($event)' - primeti da je svuda ime notify, jer se tako zove promenljiva koja salje event
+
+    zatim u parent komponenti (ona koja prima event) se napravi metoda koja odgovara onoj koju smo definisali u proslom koraku
+    primer:
+      onNotify(message: string) { ..do something.. }
+
+
+Servisi ------------------
+obicna klasa sa anotacijom @Injectable i telom koje govori koji injector koristimo (root ili component)
+primer:
+  @Injectable({
+    providedIn: 'root'
+  })
+U verziji 6 je preporuceno koristiti @Injectable , dok se u starijim verzijama servis mora registovati u modulu kao provider,
+mogu da se koriste oba pristupa, ali v6+ preporucuje sa injectable. Ekvivalent starom ponasanju je 'root'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+AngularJS**************************
+u direktivi moze da se pristupi svim clanovima scope-a direktnim navodnjenjem polja iz scopa u direktivi u HTML, s tim sto svako veliko slovo se pise kao malo, a ispred njega ide crtica
