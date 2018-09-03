@@ -103,6 +103,28 @@ U verziji 6 je preporuceno koristiti @Injectable , dok se u starijim verzijama s
 mogu da se koriste oba pristupa, ali v6+ preporucuje sa injectable. Ekvivalent starom ponasanju je 'root'
 
 
+Observable ---------------
+hendluje async data. Subscribuje se na njih da bi se dobila notifikacija kad novi data dodje.
+$ se dodaje na field name koji predstavlja observable, kaok bi se lakse uocio u kodu
+primer:
+  sources$: Observable<number> = ...
+
+
+  .pipe method omogucava dodavanje operacija na observable:
+  tap - da bi se pristupilo podacima bez konverovanja
+  .pipe(
+    tap(data => console.log('Data: ' + JSON.stringify(data))),
+  )
+
+  catchError - da bi se uvatila greska
+
+
+HTTP Client ------------
+Hendluje slanje requestova iz Angulara. Import: import { HttpClient } from "@angular/common/http";
+
+
+Assests ----------------
+Slike i slicno ide u assets folder, koji se mora definisati u angular.json (root of project)
 
 
 

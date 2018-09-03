@@ -26,13 +26,19 @@ export class ProductListComponent implements OnInit {
 
     filteredProducts: IProduct[];
     products: IProduct[] = [];
+    errorMessage: string;
 
     constructor(private productService: ProductService) {
     }
 
     ngOnInit() {
-        this.products = this.productService.getProducts();
-        this.filteredProducts = this.products;
+        this.productService.getProducts().subscribe(
+            data => {
+                this.products = data,
+                this.filteredProducts = this.products;
+            },
+            err => this.errorMessage = <any>err
+        );
     }
 
     toogleImage(): void {
