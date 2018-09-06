@@ -156,6 +156,21 @@ Da bi smo promenili rutu kroz kod, koristi se "Router" from @angular/router. Pot
   primer:
     this.router.navigate(['/products'])
 
+ZASTITA RUTA ----------
+Generisanje: ng g g ime_guarda (ng g g products/product-detail)
+Guardovi - koristi se kad zelimo da dozvolimo pristup samo pod odredjenim islovima, samo odredjenim userima,
+  ili kad je potrebno da pitamo usera da li zeli da sacuva promene pre nego ode sa stranice.
+Guardovi mogu:
+  - da stite rutu na koje se ide (CanActivate)
+  - rutu sa koje se dolazi (CanDectivate)
+  - povuku data pre aktiviranja rute (Resolve)
+  - sprece asinhrono rutiranje (CanLoad)
+
+Guardovi su interfejsi koje nasa custom klasa mora da implmentira.
+Guardovi se dodaju na definiciju rute koju zelimo da zastitimo.
+primer:
+  {path: 'products/:id', canActivate: [ProductDetailGuard], component: ProductDetailComponent}
+
 
 
 
