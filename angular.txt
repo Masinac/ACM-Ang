@@ -130,6 +130,7 @@ ROUTES -----------------
 hendluje rutiranje izmedju komponenata u applikaciji. Svaka komponenta moze imati rutu.
 rute linkujem pomocu:
   <a routerLink="['/products']">Products List</a>
+  <a routerLink="['/products', product.productId]">{{product.productName}}</a> - kad se prosledjuje parametar
 
 kada se ruter aktivira, u konfiguraciji koju komponentu treba prikazati za koji path
 
@@ -146,8 +147,14 @@ primer routing configa:
  ]
 
  Komponente se prikazuju tamo gde je specificiran router-outlet, te ga je pozeljno staviti u neki container (div)
- 
 
+ Da bi se poslati parametar uzeo iz putanje potrebno je u konstruktor dodati "ActivatedRoute", a zatim se parametru pristupa:
+ primer:
+  this.route.snapshot.paramMap.get('param_name')
+
+Da bi smo promenili rutu kroz kod, koristi se "Router" from @angular/router. Potrebno ga je dodati u konstruktor da bi se koristio, a zatim u nekoj metodi:
+  primer:
+    this.router.navigate(['/products'])
 
 
 
