@@ -172,13 +172,27 @@ primer:
   {path: 'products/:id', canActivate: [ProductDetailGuard], component: ProductDetailComponent}
 
 
+MODUL ----------------
+ng g m folder/ime_modula -m app ("ime modula gde se importuje ovaj modul")
+je klasa sa ngModule dekoratorom, i ulogom da organizuje delove aplikacije
 
+bootstrap - je array komponenata koje ce biti pokrenute kad se aplikacija startuje, svaka app mora da bootstrapuje makar jednu komponentu
+          - treba da se koristi samo u root modulu aplikacije, jer se bootstrap array ne koristi u drugim modulima koji nisu root
 
+declarations - sadrzi sve komponente koje pripadaju ovom modulu.
+             - svaka komponenta, direktiva, pipe mora da se sadrzi u samo jednom modulu
+             - sve direktive/komponente/pipes su po defaultu PRIVATE, i moze im se pristupiti samo iz modula u kom su deklarisane
+             - sheruju se tako sto se exportuju
 
+exports - omogucava serovanje direktiva/komponenti/ pipova sa drugim modulima
+        - nikad ne exportuj service
 
+imports - module moze da se extenduje importovanjem drugih modula koji su definisani u ovom arrayu
+        - 
 
-
-
+providers - svaki provider je registovan na root, tako da je dostupan bilo kojoj klasi u modulu
+          - ne dodavaj servise u providers array shared modula
+          - razmisliti o kreiranju CoreModula za servise, i importovati ga u AppModule
 
 
 
