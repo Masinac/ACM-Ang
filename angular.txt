@@ -13,6 +13,8 @@ ng build - builduje aplikaciju za produkciju u disp folder
          - "--prod" - minifikuje js fajlove, uradi ahead of time kompajliranje, izbaci map fajlove
          - "--help" - sve dostupne opcije za build
 
+update procedure - https://update.angular.io/
+
 BINDING ---------------------
 {{property name}} - read only data - one way
 property binding - primer: <img [src]='product.imageUrl'>
