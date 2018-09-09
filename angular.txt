@@ -1,6 +1,17 @@
 CLI--------------------------
 ng g c [name] - g znaci "generate" , c znaci "component"
+ng g --help - spisak svega sto CLI moze da generise
 npm install [package name] - install package, tipa bootstrap, zatim u styles.css dodati na pocetak fajla "@import "~bootstrap/dist/css/bootstrap.min.css";"
+ng help - izlistava sve dostupne komande ili ng komanda pa na nju "--help" za sve dostupne opcije te komande
+ng v - angular CLI version
+ng new app_name - kreira novi projekat
+ng serve - pokrece server na default port 4200
+         - "-o" - automatski pokrece browser, a moze da se doda i u package.json kako bi automatski to radio
+         -port xxxx - za drugi port
+ng test ili ng e2e - pokrece testove
+ng build - builduje aplikaciju za produkciju u disp folder
+         - "--prod" - minifikuje js fajlove, uradi ahead of time kompajliranje, izbaci map fajlove
+         - "--help" - sve dostupne opcije za build
 
 BINDING ---------------------
 {{property name}} - read only data - one way
@@ -188,7 +199,7 @@ exports - omogucava serovanje direktiva/komponenti/ pipova sa drugim modulima
         - nikad ne exportuj service
 
 imports - module moze da se extenduje importovanjem drugih modula koji su definisani u ovom arrayu
-        - 
+        -
 
 providers - svaki provider je registovan na root, tako da je dostupan bilo kojoj klasi u modulu
           - ne dodavaj servise u providers array shared modula
