@@ -15,6 +15,11 @@ ng build - builduje aplikaciju za produkciju u disp folder
 
 update procedure - https://update.angular.io/
 
+ANGULAR GENERAL ------------------
+Kopiranje objekata:
+  let copy = Object.assign({}, myObject); - pravi kopiju objekta, ali samo fieldova. Ukoliko objekat sadrzi neki objekat u sebi, njega ova metoda skroy ignorise i on ostaje reference link
+  let copy = JSON.parse(JSON.stringify(myObject)); - pravi deep kopiju objekta, ukljucujuci i nested objekte
+
 BINDING ---------------------
 {{property name}} - read only data - one way
 property binding - primer: <img [src]='product.imageUrl'>
