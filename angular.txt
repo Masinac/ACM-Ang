@@ -20,6 +20,18 @@ Kopiranje objekata:
   let copy = Object.assign({}, myObject); - pravi kopiju objekta, ali samo fieldova. Ukoliko objekat sadrzi neki objekat u sebi, njega ova metoda skroy ignorise i on ostaje reference link
   let copy = JSON.parse(JSON.stringify(myObject)); - pravi deep kopiju objekta, ukljucujuci i nested objekte
 
+  if(object) - will check for null, undefined, empty
+
+  setTimeout(() => {
+      ...do stuff...
+    }, 2000, []);
+
+    Replace element in array:
+    this.stations.splice(index, 1, data); - treci argument postavlja novi element na mesto ovog sto je obrisan
+
+    Delete item from array:
+    this.priceList.splice(this.priceList.findIndex(item => item.id === id), 1); - drugi argument kaze koliko stvari da obrise
+
 BINDING ---------------------
 {{property name}} - read only data - one way
 property binding - primer: <img [src]='product.imageUrl'>
